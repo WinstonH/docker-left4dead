@@ -11,4 +11,4 @@ RUN apt-get update && apt-get install -y lib32gcc1 wget && \
 EXPOSE 27015 27015/udp
 
 WORKDIR steamcmd
-ENTRYPOINT [sleep 3600]
+CMD sleep 3600
