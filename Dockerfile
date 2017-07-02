@@ -1,14 +1,16 @@
-FROM inanimate/steamcmd-play
+FROM ubuntu:latest
+ENV DEBIAN_FRONTEND noninteractive
+ENV RUNUSER daemon
 
-ENV GAME_NAME left4dead2
-ENV GAME_ID 222860
+WORKDIR root
+RUN apt-get update && apt-get install -y lib32gcc1 && \
+    mkdir steamcmd && cd steamcmd && \
+    wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && \
+    tar -zxvf steamcmd_linux.tar.gz && \
+    ./steamcmd.sh +login anonymous +force_install_dir /l4d2 +app_update 222860 validate +quit
 
-ENV GAME_PATH ${STEAMCMD_LOC}/${GAME_NAME}
-
-RUN ${STEAMCMD} +login anonymous +force_install_dir ${GAME_PATH} +app_update ${GAME_ID} validate +quit
-
-WORKDIR ${GAME_PATH}
+COPY server.cfg /l4d2/left4dead2/cfg/server.cfg
+WORKDIR /l4d2
 
 ENTRYPOINT ["./srcds_run", "-game left4dead2"]
-
-CMD ["+sv_lan", "1", "+map", "c2m1_highway"]
+CMD ["+exec config.cfg"]
