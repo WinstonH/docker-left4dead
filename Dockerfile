@@ -8,8 +8,6 @@ RUN apt-get update && apt-get install -y lib32gcc1 wget && \
     tar -zxvf steamcmd_linux.tar.gz && \
     apt-get clean
     
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x entrypoint.sh
 EXPOSE 27015 27015/udp
 
 WORKDIR steamcmd
