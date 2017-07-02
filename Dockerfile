@@ -12,4 +12,6 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x entrypoint.sh
 EXPOSE 27015 27015/udp
 
-ENTRYPOINT [/entrypoint.sh]
+WORKDIR steamcmd
+ENTRYPOINT [./steamcmd.sh +login anonymous +force_install_dir /l4d2 +app_update 222860 validate +quit]
+CMD ./srcds_run -game left4dead2 +sv_steamgroup 29436146 +sv_steamgroup_exclusive 1
