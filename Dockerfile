@@ -9,4 +9,5 @@ RUN apt-get update && apt-get install -y lib32gcc1 wget && \
     tar -zxvf steamcmd_linux.tar.gz && \
     apt-get clean && chmod +x /get_game.sh
 
+EXPOSE 27015 27015/udp
 ENTRYPOINT [/get_game.sh]
