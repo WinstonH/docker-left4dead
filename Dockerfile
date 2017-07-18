@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y lib32gcc1 wget && \
     apt-get clean && \
     chmod +x /start.sh
     
-EXPOSE 27015 27015/udp
+EXPOSE 27015/udp
 
 WORKDIR steamcmd
 ENTRYPOINT ["/start.sh"]
