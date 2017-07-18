@@ -13,4 +13,5 @@ RUN apt-get update && apt-get install -y lib32gcc1 wget && \
 EXPOSE 27015/udp
 
 WORKDIR steamcmd
+RUN ./steamcmd.sh +login anonymous
 ENTRYPOINT ["/start.sh"]
