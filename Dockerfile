@@ -12,5 +12,6 @@ RUN apt-get update && apt-get install -y lib32gcc1 wget && \
 COPY server.cfg /l4d2/left4dead2/cfg/server.cfg
 WORKDIR /l4d2
 
+EXPOSE 27015/udp
 ENTRYPOINT ["./srcds_run", "-game left4dead2"]
-CMD ["+exec config.cfg"]
+CMD ["+exec server.cfg"]
